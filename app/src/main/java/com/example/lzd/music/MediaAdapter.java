@@ -27,7 +27,7 @@ public class MediaAdapter extends ArrayAdapter {
         ImageView imageView = (ImageView) view.findViewById(R.id.List_image);
         TextView textView = (TextView) view.findViewById(R.id.List_text);
         imageView.setImageResource(R.drawable.pic_cd);
-        textView.setText(musicData.getName() + " " + musicData.getArtist());
+        textView.setText(musicData.getName() + "  " + musicData.getArtist());
         return view;
     }
 }

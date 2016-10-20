@@ -5,21 +5,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!--<com.example.lzd.music.TitleLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_weight="1"></com.example.lzd.music.TitleLayout>-->
+
+    <TextView
+        android:id="@+id/musicname_play"
+        android:textSize="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="4" />
+
     <ImageView
         android:id="@+id/image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="35dp"
-        android:layout_marginRight="35dp"
         android:src="@drawable/pic_cd"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp" />
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="6"
-        android:layout_marginBottom="15dp">
+        android:layout_marginBottom="15dp"
+        android:layout_weight="4">
+
 
         <ImageView
             android:id="@+id/playway"

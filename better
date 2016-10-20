@@ -1,0 +1,613 @@
+warning: LF will be replaced by CRLF in .idea/gradle.xml.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in .idea/misc.xml.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in .idea/modules.xml.
+The file will have its original line endings in your working directory.
+[1mdiff --git a/.idea/gradle.xml b/.idea/gradle.xml[m
+[1mindex 416af17..91472d3 100644[m
+[1m--- a/.idea/gradle.xml[m
+[1m+++ b/.idea/gradle.xml[m
+[36m@@ -5,19 +5,7 @@[m
+       <GradleProjectSettings>[m
+         <option name="distributionType" value="LOCAL" />[m
+         <option name="externalProjectPath" value="$PROJECT_DIR$" />[m
+[31m-        <option name="gradleHome" value="D:\install\AndroidStudio1\gradle\gradle-2.10" />[m
+[31m-        <option name="modules">[m
+[31m-          <set>[m
+[31m-            <option value="$PROJECT_DIR$" />[m
+[31m-            <option value="$PROJECT_DIR$/app" />[m
+[31m-          </set>[m
+[31m-        </option>[m
+[31m-        <option name="myModules">[m
+[31m-          <set>[m
+[31m-            <option value="$PROJECT_DIR$" />[m
+[31m-            <option value="$PROJECT_DIR$/app" />[m
+[31m-          </set>[m
+[31m-        </option>[m
+[32m+[m[32m        <option name="gradleHome" value="D:\install\AndroidStudio2.01\gradle\gradle-2.10" />[m
+       </GradleProjectSettings>[m
+     </option>[m
+   </component>[m
+[1mdiff --git a/.idea/misc.xml b/.idea/misc.xml[m
+[1mindex 5d19981..4766249 100644[m
+[1m--- a/.idea/misc.xml[m
+[1m+++ b/.idea/misc.xml[m
+[36m@@ -1,8 +1,5 @@[m
+ <?xml version="1.0" encoding="UTF-8"?>[m
+ <project version="4">[m
+[31m-  <component name="EntryPointsManager">[m
+[31m-    <entry_points version="2.0" />[m
+[31m-  </component>[m
+   <component name="NullableNotNullManager">[m
+     <option name="myDefaultNullable" value="android.support.annotation.Nullable" />[m
+     <option name="myDefaultNotNull" value="android.support.annotation.NonNull" />[m
+[36m@@ -37,7 +34,7 @@[m
+     <ConfirmationsSetting value="0" id="Add" />[m
+     <ConfirmationsSetting value="0" id="Remove" />[m
+   </component>[m
+[31m-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" default="true" assert-keyword="true" jdk-15="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">[m
+[32m+[m[32m  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" default="true" assert-keyword="true" jdk-15="true">[m
+     <output url="file://$PROJECT_DIR$/build/classes" />[m
+   </component>[m
+   <component name="ProjectType">[m
+[1mdiff --git a/.idea/modules.xml b/.idea/modules.xml[m
+[1mindex e64816a..8e9d765 100644[m
+[1m--- a/.idea/modules.xml[m
+[1m+++ b/.idea/modules.xml[m
+[36m@@ -3,7 +3,6 @@[m
+   <component name="ProjectModuleManager">[m
+     <modules>[m
+       <module fileurl="file://$PROJECT_DIR$/Music.iml" filepath="$PROJECT_DIR$/Music.iml" />[m
+[31m-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />[m
+     </modules>[m
+   </component>[m
+ </project>[m
+\ No newline at end of file[m
+[1mdiff --git a/.idea/vcs.xml b/.idea/vcs.xml[m
+[1mindex 94a25f7..35eb1dd 100644[m
+[1m--- a/.idea/vcs.xml[m
+[1m+++ b/.idea/vcs.xml[m
+[36m@@ -1,6 +1,6 @@[m
+ <?xml version="1.0" encoding="UTF-8"?>[m
+ <project version="4">[m
+   <component name="VcsDirectoryMappings">[m
+[31m-    <mapping directory="$PROJECT_DIR$" vcs="Git" />[m
+[32m+[m[32m    <mapping directory="" vcs="Git" />[m
+   </component>[m
+ </project>[m
+\ No newline at end of file[m
+[1mdiff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml[m
+[1mindex d71ebf6..42d4d63 100644[m
+[1m--- a/app/src/main/AndroidManifest.xml[m
+[1m+++ b/app/src/main/AndroidManifest.xml[m
+[36m@@ -19,7 +19,8 @@[m
+                 <category android:name="android.intent.category.LAUNCHER" />[m
+             </intent-filter>[m
+         </activity>[m
+[31m-        <activity android:name=".PlayActivity"></activity>[m
+[32m+[m[32m        <activity[m
+[32m+[m[32m            android:name=".PlayActivity" android:launchMode="singleTop"></activity>[m
+     </application>[m
+ [m
+ </manifest>[m
+\ No newline at end of file[m
+[1mdiff --git a/app/src/main/java/com/example/lzd/music/GetMusic.java b/app/src/main/java/com/example/lzd/music/GetMusic.java[m
+[1mindex 3d74cf7..29027f3 100644[m
+[1m--- a/app/src/main/java/com/example/lzd/music/GetMusic.java[m
+[1m+++ b/app/src/main/java/com/example/lzd/music/GetMusic.java[m
+[36m@@ -1,7 +1,60 @@[m
+ package com.example.lzd.music;[m
+ [m
+[32m+[m[32mimport android.annotation.TargetApi;[m
+[32m+[m[32mimport android.app.Activity;[m
+[32m+[m[32mimport android.database.Cursor;[m
+[32m+[m[32mimport android.os.Build;[m
+[32m+[m[32mimport android.provider.MediaStore;[m
+[32m+[m
+[32m+[m[32mimport java.util.ArrayList;[m
+[32m+[m
+ /**[m
+  * Created by LZD on 2016/10/8.[m
+  */[m
+[32m+[m[32m//获取信息[m
+ public class GetMusic {[m
+[32m+[m[32m    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)[m
+[32m+[m[32m    static ArrayList<MusicData> getMusicData(Activity activity) {[m
+[32m+[m[32m        ArrayList<MusicData> MediaList = new ArrayList<>();[m
+[32m+[m[32m        //创建Cursor对象[m
+[32m+[m[32m        Cursor cursor = null;[m
+[32m+[m[32m        cursor = activity.getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,[m
+[32m+[m[32m                new String[]{[m
+[32m+[m[32m                        MediaStore.Audio.Media.TITLE, //歌曲名[m
+[32m+[m[32m                        MediaStore.Audio.Media.ARTIST, //歌手名[m
+[32m+[m[32m                        MediaStore.Audio.Media.ALBUM, //专辑名[m
+[32m+[m[32m                        MediaStore.Audio.Media.DURATION, //歌曲时长[m
+[32m+[m[32m                        MediaStore.Audio.Media._ID, //歌曲ID[m
+[32m+[m[32m                        MediaStore.Audio.Media.DATA, //歌曲路径 url[m
+[32m+[m[32m                        MediaStore.Audio.Media.DISPLAY_NAME //显示全部名字[m
+[32m+[m[32m                }, null, null, null, null);[m
+[32m+[m
+[32m+[m[32m        //光标指在第一行[m
+[32m+[m[32m        if (cursor.moveToFirst()) {[m
+[32m+[m[32m            do {[m
+[32m+[m[32m                //遍历Cursor对象取出数据[m
+[32m+[m[32m                String title = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE));[m
+[32m+[m[32m                String artist = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST));[m
+[32m+[m[32m                String album = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM));[m
+[32m+[m[32m                long duration = cursor.getLong(cursor.getColumnIndex(MediaStore.Audio.Media.DURATION));[m
+[32m+[m[32m                String id = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media._ID));[m
+[32m+[m[32m                String path = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA));[m
+[32m+[m[32m                String display_name = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DISPLAY_NAME));[m
+[32m+[m
+[32m+[m[32m                //将数据存入集合中[m
+[32m+[m[32m                MusicData md = new MusicData();[m
+[32m+[m[32m                md.setName(title);[m
+[32m+[m[32m                md.setArtist(artist);[m
+[32m+[m[32m                md.setAlbum(album);[m
+[32m+[m[32m                md.setDuration(duration);[m
+[32m+[m[32m                md.setId(id);[m
+[32m+[m[32m                md.setPath(path);[m
+[32m+[m[32m                md.setDisplay_name(display_name);[m
+[32m+[m[32m                MediaList.add(md);[m
+[32m+[m[32m            } while (cursor.moveToNext());[m
+[32m+[m[32m        }[m
+[32m+[m[32m        //释放资源[m
+[32m+[m[32m        cursor.close();[m
+[32m+[m[32m        return MediaList;[m
+[32m+[m[32m    }[m
+ }[m
+[1mdiff --git a/app/src/main/java/com/example/lzd/music/MainActivity.java b/app/src/main/java/com/example/lzd/music/MainActivity.java[m
+[1mindex 06cabd7..dc694c6 100644[m
+[1m--- a/app/src/main/java/com/example/lzd/music/MainActivity.java[m
+[1m+++ b/app/src/main/java/com/example/lzd/music/MainActivity.java[m
+[36m@@ -1,14 +1,10 @@[m
+ package com.example.lzd.music;[m
+ [m
+[31m-import android.annotation.TargetApi;[m
+ import android.content.BroadcastReceiver;[m
+ import android.content.Context;[m
+ import android.content.Intent;[m
+ import android.content.IntentFilter;[m
+[31m-import android.database.Cursor;[m
+ import android.media.MediaPlayer;[m
+[31m-import android.os.Build;[m
+[31m-import android.provider.MediaStore;[m
+ import android.support.v7.app.AppCompatActivity;[m
+ import android.os.Bundle;[m
+ import android.view.View;[m
+[36m@@ -36,10 +32,11 @@[m [mpublic class MainActivity extends AppCompatActivity {[m
+     @Override[m
+     protected void onCreate(Bundle savedInstanceState) {[m
+         super.onCreate(savedInstanceState);[m
+[32m+[m[32m        //this.requestWindowFeature(Window.FEATURE_NO_TITLE);[m
+         setContentView(R.layout.activity_main);[m
+ [m
+         //获取信息，加载适配器，ListView点击事件[m
+[31m-        MediaList = getMusicData();[m
+[32m+[m[32m        MediaList = GetMusic.getMusicData(this);[m
+         MediaAdapter adapter = new MediaAdapter(MainActivity.this, R.layout.listview, MediaList);[m
+         ListView listView = (ListView) findViewById(R.id.list_view);[m
+         listView.setAdapter(adapter);[m
+[36m@@ -52,9 +49,19 @@[m [mpublic class MainActivity extends AppCompatActivity {[m
+         toPlayPause = (ImageView) findViewById(R.id.pic_play);[m
+         toNext = (ImageView) findViewById(R.id.pic_next);[m
+ [m
+[32m+[m[32m        //textview初始化[m
+[32m+[m[32m        textview.setText(MediaList.get(0).getName() + "  " + MediaList.get(0).getArtist());[m
+[32m+[m
+         //按钮点击事件[m
+         MyOnClickListener myonclicklistener = new MyOnClickListener();[m
+[31m-        imageview.setOnClickListener(myonclicklistener);[m
+[32m+[m[32m        imageview.setOnClickListener(new View.OnClickListener() {[m
+[32m+[m[32m            @Override[m
+[32m+[m[32m            public void onClick(View v) {[m
+[32m+[m[32m                Intent intent = new Intent(MainActivity.this, PlayActivity.class);[m
+[32m+[m[32m                startActivity(intent);[m
+[32m+[m[32m                //finish();[m
+[32m+[m[32m            }[m
+[32m+[m[32m        });[m
+         textview.setOnClickListener(myonclicklistener);[m
+         toPrior.setOnClickListener(myonclicklistener);[m
+         toPlayPause.setOnClickListener(myonclicklistener);[m
+[36m@@ -71,52 +78,6 @@[m [mpublic class MainActivity extends AppCompatActivity {[m
+         startService(intent);[m
+     }[m
+ [m
+[31m-    //获取信息[m
+[31m-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)[m
+[31m-    private ArrayList<MusicData> getMusicData() {[m
+[31m-        //创建Cursor对象[m
+[31m-        Cursor cursor = null;[m
+[31m-        cursor = getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,[m
+[31m-                new String[]{[m
+[31m-                        MediaStore.Audio.Media.TITLE, //歌曲名[m
+[31m-                        MediaStore.Audio.Media.ARTIST, //歌手名[m
+[31m-                        MediaStore.Audio.Media.ALBUM, //专辑名[m
+[31m-                        MediaStore.Audio.Media.DURATION, //歌曲时长[m
+[31m-                        MediaStore.Audio.Media._ID, //歌曲ID[m
+[31m-                        MediaStore.Audio.Media.DATA, //歌曲路径 url[m
+[31m-                        MediaStore.Audio.Media.DISPLAY_NAME //显示全部名字[m
+[31m-                }, null, null, null, null);[m
+[31m-[m
+[31m-        //光标指在第一行[m
+[31m-        if (cursor.moveToFirst()) {[m
+[31m-            do {[m
+[31m-                //遍历Cursor对象取出数据[m
+[31m-                String title = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE));[m
+[31m-                String artist = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST));[m
+[31m-                String album = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM));[m
+[31m-                long duration = cursor.getLong(cursor.getColumnIndex(MediaStore.Audio.Media.DURATION));[m
+[31m-                String id = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media._ID));[m
+[31m-                String path = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA));[m
+[31m-                String display_name = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DISPLAY_NAME));[m
+[31m-[m
+[31m-                //将数据存入集合中[m
+[31m-                MusicData md = new MusicData();[m
+[31m-                md.setName(title);[m
+[31m-                md.setArtist(artist);[m
+[31m-                md.setAlbum(album);[m
+[31m-                md.setDuration(duration);[m
+[31m-                md.setId(id);[m
+[31m-                md.setPath(path);[m
+[31m-                md.setDisplay_name(display_name);[m
+[31m-                MediaList.add(md);[m
+[31m-            } while (cursor.moveToNext());[m
+[31m-        }[m
+[31m-        //释放资源[m
+[31m-        cursor.close();[m
+[31m-        return MediaList;[m
+[31m-    }[m
+[31m-[m
+[31m-[m
+     //ListView点击事件[m
+     private void press(final MediaAdapter adapter, final ListView listView) {[m
+         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {[m
+[36m@@ -128,10 +89,6 @@[m [mpublic class MainActivity extends AppCompatActivity {[m
+                 intent.putExtra("command",Constant.PLAY_ACTION);[m
+                 intent.putExtra("position",position);[m
+                 sendBroadcast(intent);[m
+[31m-[m
+[31m-//                intent.putExtra("command",Constant.PLAY_ACTION);[m
+[31m-//                intent.putExtra("position",position);[m
+[31m-//                sendBroadcast(intent);[m
+             }[m
+         });[m
+     }[m
+[36m@@ -142,11 +99,6 @@[m [mpublic class MainActivity extends AppCompatActivity {[m
+         public void onClick(View v) {[m
+             Intent intent;[m
+             switch (v.getId()) {[m
+[31m-                case R.id.pic_small:[m
+[31m-                    //页面跳转，点击列表页左下角图案跳转到播放界面[m
+[31m-                    intent = new Intent(MainActivity.this, PlayActivity.class);[m
+[31m-                    startActivity(intent);[m
+[31m-                    break;[m
+                 case R.id.List_text:[m
+                     break;[m
+                 case R.id.pic_prior:[m
+[36m@@ -158,13 +110,11 @@[m [mpublic class MainActivity extends AppCompatActivity {[m
+                 case R.id.pic_play:[m
+                     intent = new Intent(Constant.MUSIC_SERVICE);[m
+                     if(isPlaying) {[m
+[31m-                        isPlaying = false;[m
+[31m-                        toPlayPause.setImageResource(R.drawable.pause);[m
+[32m+[m[32m                        isPlaying = mediaPlayer.isPlaying();[m
+                         intent.putExtra("command", Constant.PAUSE_ACTION);[m
+                         intent.putExtra("position",i);[m
+                     }else {[m
+[31m-                        isPlaying = true;[m
+[31m-                        toPlayPause.setImageResource(R.drawable.play);[m
+[32m+[m[32m                        isPlaying = mediaPlayer.isPlaying();[m
+                         intent.putExtra("command",Constant.PLAY_ACTION);[m
+                         intent.putExtra("position",i);[m
+                     }[m
+[36m@@ -188,16 +138,17 @@[m [mpublic class MainActivity extends AppCompatActivity {[m
+             i = intent.getIntExtra("position",-1);[m
+             isPlaying = intent.getBooleanExtra("isPlaying",false);[m
+ [m
+[31m-            textview.setText(MediaList.get(i).getName() + " " + MediaList.get(i).getArtist());[m
+[32m+[m[32m            MusicData musicdata = MediaList.get(i);[m
+[32m+[m[32m            textview.setText(musicdata.getName() + " " + musicdata.getArtist());[m
+             switch (command) {[m
+                 case 4:[m
+[31m-                    toPlayPause.setImageResource(R.drawable.pause);[m
+[32m+[m[32m                    toPlayPause.setImageResource(R.drawable.play);[m
+                     break;[m
+                 case 5:[m
+                 case 6:[m
+                 case 7:[m
+                 case 8:[m
+[31m-                    toPlayPause.setImageResource(R.drawable.play);[m
+[32m+[m[32m                    toPlayPause.setImageResource(R.drawable.pause);[m
+                     break;[m
+             }[m
+         }[m
+[1mdiff --git a/app/src/main/java/com/example/lzd/music/MediaAdapter.java b/app/src/main/java/com/example/lzd/music/MediaAdapter.java[m
+[1mindex 654c139..2af6d5c 100644[m
+[1m--- a/app/src/main/java/com/example/lzd/music/MediaAdapter.java[m
+[1m+++ b/app/src/main/java/com/example/lzd/music/MediaAdapter.java[m
+[36m@@ -27,7 +27,7 @@[m [mpublic class MediaAdapter extends ArrayAdapter {[m
+         ImageView imageView = (ImageView) view.findViewById(R.id.List_image);[m
+         TextView textView = (TextView) view.findViewById(R.id.List_text);[m
+         imageView.setImageResource(R.drawable.pic_cd);[m
+[31m-        textView.setText(musicData.getName() + " " + musicData.getArtist());[m
+[32m+[m[32m        textView.setText(musicData.getName() + "  " + musicData.getArtist());[m
+         return view;[m
+     }[m
+ }[m
+[1mdiff --git a/app/src/main/java/com/example/lzd/music/PlayActivity.java b/app/src/main/java/com/example/lzd/music/PlayActivity.java[m
+[1mindex a1dcc1e..9eb0f9b 100644[m
+[1m--- a/app/src/main/java/com/example/lzd/music/PlayActivity.java[m
+[1m+++ b/app/src/main/java/com/example/lzd/music/PlayActivity.java[m
+[36m@@ -4,6 +4,7 @@[m [mimport android.content.BroadcastReceiver;[m
+ import android.content.Context;[m
+ import android.content.Intent;[m
+ import android.content.IntentFilter;[m
+[32m+[m[32mimport android.media.MediaPlayer;[m
+ import android.os.Bundle;[m
+ import android.os.Handler;[m
+ import android.support.annotation.Nullable;[m
+[36m@@ -11,19 +12,28 @@[m [mimport android.support.v7.app.AppCompatActivity;[m
+ import android.util.Log;[m
+ import android.view.View;[m
+ import android.view.Window;[m
+[32m+[m[32mimport android.widget.ArrayAdapter;[m
+[32m+[m[32mimport android.widget.Button;[m
+ import android.widget.ImageView;[m
+[32m+[m[32mimport android.widget.TextView;[m
+[32m+[m
+[32m+[m[32mimport java.util.ArrayList;[m
+ [m
+ /**[m
+  * Created by LZD on 2016/10/6.[m
+  */[m
+ public class PlayActivity extends AppCompatActivity {[m
+[31m-    Handler handler = new Handler();[m
+[32m+[m[32m    //Handler handler = new Handler();[m
+[32m+[m[32m    ArrayList<MusicData> musiclist = new ArrayList<>();[m
+[32m+[m
+[32m+[m[32m    MediaPlayer mediaPlayer = new MediaPlayer();[m
+ [m
+     private int i = 0;[m
+     private boolean isPlaying = false;[m
+     private int playway = 0;[m
+ [m
+     //初始化控件[m
+[32m+[m[32m    private TextView textView;[m
+     private ImageView imageView;[m
+     private ImageView playWay;[m
+     private ImageView toPrior;[m
+[36m@@ -33,54 +43,73 @@[m [mpublic class PlayActivity extends AppCompatActivity {[m
+     @Override[m
+     protected void onCreate(@Nullable Bundle savedInstanceState) {[m
+         super.onCreate(savedInstanceState);[m
+[31m-        requestWindowFeature(Window.FEATURE_NO_TITLE);[m
+[32m+[m[32m        this.requestWindowFeature(Window.FEATURE_NO_TITLE);[m
+         setContentView(R.layout.play_ui);[m
+[31m-        Log.d("PlayActivity","titile is over");[m
+[32m+[m
+[32m+[m[32m        //自定义标题栏[m
+[32m+[m[32m//        Button button = (Button) findViewById(R.id.back);[m
+[32m+[m[32m//        button.setOnClickListener(new View.OnClickListener() {[m
+[32m+[m[32m//            //点击事件，back按钮返回到MainActivity[m
+[32m+[m[32m//            @Override[m
+[32m+[m[32m//            public void onClick(View v) {[m
+[32m+[m[32m//                Intent intent = new Intent(PlayActivity.this,MainActivity.class);[m
+[32m+[m[32m//                startActivity(intent);[m
+[32m+[m[32m//                finish();[m
+[32m+[m[32m//            }[m
+[32m+[m[32m//        });[m
+ [m
+         //控件实例化[m
+[31m-        imageView.findViewById(R.id.image);[m
+[31m-        playWay.findViewById(R.id.playway);[m
+[31m-        toPrior.findViewById(R.id.to_prior);[m
+[31m-        toPlayPause.findViewById(R.id.to_play);[m
+[31m-        toNext.findViewById(R.id.to_next);[m
+[31m-        Log.d("PlayActivity","kongjian is over");[m
+[32m+[m[32m        textView = (TextView) findViewById(R.id.musicname_play);[m
+[32m+[m[32m        imageView = (ImageView) findViewById(R.id.image);[m
+[32m+[m[32m        playWay = (ImageView) findViewById(R.id.playway);[m
+[32m+[m[32m        toPrior = (ImageView) findViewById(R.id.to_prior);[m
+[32m+[m[32m        toPlayPause = (ImageView) findViewById(R.id.to_play);[m
+[32m+[m[32m        toNext = (ImageView) findViewById(R.id.to_next);[m
+[32m+[m
+[32m+[m[32m        //获取信息[m
+[32m+[m[32m        musiclist = GetMusic.getMusicData(this);[m
+ [m
+         //点击事件[m
+         MyOnClickListener onClickListener = new MyOnClickListener();[m
+[31m-        Log.d("PlayActivity","click is over");[m
+[32m+[m[32m        playWay.setOnClickListener(onClickListener);[m
+[32m+[m[32m        toPrior.setOnClickListener(onClickListener);[m
+[32m+[m[32m        toPlayPause.setOnClickListener(onClickListener);[m
+[32m+[m[32m        toNext.setOnClickListener(onClickListener);[m
+ [m
+         //注册接收广播对象[m
+         PlayReceiver playReceiver = new PlayReceiver();[m
+         IntentFilter intentFilter = new IntentFilter();[m
+         intentFilter.addAction(Constant.MUSIC_PLAY);[m
+         registerReceiver(playReceiver,intentFilter);[m
+[31m-        Log.d("PlayActivity","broadcast is over");[m
+ [m
+         //启动服务[m
+         Intent intent = new Intent(PlayActivity.this,PlayerService.class);[m
+         startService(intent);[m
+[31m-        Log.d("PlayActivity","service is over");[m
+     }[m
+ [m
+     private class MyOnClickListener implements View.OnClickListener {[m
+[31m-        Intent intent = new Intent(Constant.MUSIC_SERVICE);[m
+[32m+[m[32m        Intent intent;[m
+         @Override[m
+         public void onClick(View v) {[m
+             switch (v.getId()) {[m
+                 case R.id.playway:[m
+                     if(playway == 0) {[m
+[32m+[m[32m                        intent = new Intent(Constant.MUSIC_SERVICE);[m
+                         playWay.setImageResource(R.drawable.allplay);[m
+                         intent.putExtra("command",Constant.ALLPLAY_ACTION);[m
+                         intent.putExtra("position",i);[m
+                     } else if(playway == 1) {[m
+[32m+[m[32m                        intent = new Intent(Constant.MUSIC_SERVICE);[m
+                         playWay.setImageResource(R.drawable.currentrepeat);[m
+                         intent.putExtra("command",Constant.CURRENTREPEAT_ACTION);[m
+                         intent.putExtra("position",i);[m
+                     } else if(playway == 2) {[m
+[32m+[m[32m                        intent = new Intent(Constant.MUSIC_SERVICE);[m
+                         playWay.setImageResource(R.drawable.shuffle);[m
+                         intent.putExtra("command",Constant.SHUFFLE_ACTION);[m
+                         intent.putExtra("position",i);[m
+                     } else if(playway == 3) {[m
+[32m+[m[32m                        intent = new Intent(Constant.MUSIC_SERVICE);[m
+                         playWay.setImageResource(R.drawable.allrepeat);[m
+                         intent.putExtra("command",Constant.ALLREPEAT_ACTION);[m
+                         intent.putExtra("position",i);[m
+[36m@@ -88,11 +117,13 @@[m [mpublic class PlayActivity extends AppCompatActivity {[m
+                     sendBroadcast(intent);[m
+                     break;[m
+                 case R.id.to_prior:[m
+[32m+[m[32m                    intent = new Intent(Constant.MUSIC_SERVICE);[m
+                     intent.putExtra("command",Constant.PROIR_ACTION);[m
+                     intent.putExtra("position",i);[m
+                     sendBroadcast(intent);[m
+                     break;[m
+                 case R.id.to_play:[m
+[32m+[m[32m                    intent = new Intent(Constant.MUSIC_SERVICE);[m
+                     if(isPlaying) {[m
+                         toPlayPause.setImageResource(R.drawable.play);[m
+                         isPlaying = false;[m
+[36m@@ -107,6 +138,7 @@[m [mpublic class PlayActivity extends AppCompatActivity {[m
+                     sendBroadcast(intent);[m
+                     break;[m
+                 case R.id.to_next:[m
+[32m+[m[32m                    intent = new Intent(Constant.MUSIC_SERVICE);[m
+                     intent.putExtra("command",Constant.NEXT_ACTION);[m
+                     intent.putExtra("position",i);[m
+                     sendBroadcast(intent);[m
+[36m@@ -124,6 +156,8 @@[m [mpublic class PlayActivity extends AppCompatActivity {[m
+             isPlaying = intent.getBooleanExtra("isPlaying",false);[m
+             playway = intent.getIntExtra("playway",-1);[m
+ [m
+[32m+[m[32m            textView.setText(musiclist.get(i).getName() + "  " + musiclist.get(i).getArtist());[m
+[32m+[m
+             switch (command) {[m
+                 case 0:[m
+                     playWay.setImageResource(R.drawable.allrepeat);[m
+[36m@@ -138,12 +172,12 @@[m [mpublic class PlayActivity extends AppCompatActivity {[m
+                     playWay.setImageResource(R.drawable.shuffle);[m
+                     break;[m
+                 case 4:[m
+[31m-                    toPlayPause.setImageResource(R.drawable.pause);[m
+[32m+[m[32m                    toPlayPause.setImageResource(R.drawable.play);[m
+                     break;[m
+                 case 5:[m
+                 case 6:[m
+                 case 7:[m
+[31m-                    toPlayPause.setImageResource(R.drawable.play);[m
+[32m+[m[32m                    toPlayPause.setImageResource(R.drawable.pause);[m
+                     break;[m
+                 case 8:[m
+                     toPlayPause.setImageResource(R.drawable.play);[m
+[1mdiff --git a/app/src/main/java/com/example/lzd/music/TitleLayout.java b/app/src/main/java/com/example/lzd/music/TitleLayout.java[m
+[1mindex e354da2..4f9a9fd 100644[m
+[1m--- a/app/src/main/java/com/example/lzd/music/TitleLayout.java[m
+[1m+++ b/app/src/main/java/com/example/lzd/music/TitleLayout.java[m
+[36m@@ -1,7 +1,20 @@[m
+ package com.example.lzd.music;[m
+ [m
+[32m+[m[32mimport android.app.Activity;[m
+[32m+[m[32mimport android.content.Context;[m
+[32m+[m[32mimport android.content.Intent;[m
+[32m+[m[32mimport android.util.AttributeSet;[m
+[32m+[m[32mimport android.view.LayoutInflater;[m
+[32m+[m[32mimport android.view.View;[m
+[32m+[m[32mimport android.widget.Button;[m
+[32m+[m[32mimport android.widget.LinearLayout;[m
+[32m+[m
+ /**[m
+  * Created by LZD on 2016/10/9.[m
+  */[m
+[31m-public class TitleLayout {[m
+[32m+[m[32mpublic class TitleLayout extends LinearLayout {[m
+[32m+[m[32m    public TitleLayout(final Context context, AttributeSet attrs) {[m
+[32m+[m[32m        super(context, attrs);[m
+[32m+[m[32m        LayoutInflater.from(context).inflate(R.layout.title,this);[m
+[32m+[m[32m    }[m
+ }[m
+[1mdiff --git a/app/src/main/res/layout/play_ui.xml b/app/src/main/res/layout/play_ui.xml[m
+[1mindex 2402c2e..fb84f36 100644[m
+[1m--- a/app/src/main/res/layout/play_ui.xml[m
+[1m+++ b/app/src/main/res/layout/play_ui.xml[m
+[36m@@ -5,21 +5,36 @@[m
+     android:layout_width="match_parent"[m
+     android:layout_height="match_parent">[m
+ [m
+[32m+[m[32m    <!--<com.example.lzd.music.TitleLayout-->[m
+[32m+[m[32m        <!--android:layout_width="match_parent"-->[m
+[32m+[m[32m        <!--android:layout_height="wrap_content"-->[m
+[32m+[m[32m        <!--android:orientation="horizontal"-->[m
+[32m+[m[32m        <!--android:layout_weight="1"></com.example.lzd.music.TitleLayout>-->[m
+[32m+[m
+[32m+[m[32m    <TextView[m
+[32m+[m[32m        android:id="@+id/musicname_play"[m
+[32m+[m[32m        android:textSize="25dp"[m
+[32m+[m[32m        android:layout_width="match_parent"[m
+[32m+[m[32m        android:layout_height="match_parent"[m
+[32m+[m[32m        android:layout_weight="4" />[m
+[32m+[m
+     <ImageView[m
+         android:id="@+id/image"[m
+         android:layout_width="match_parent"[m
+         android:layout_height="match_parent"[m
+[31m-        android:layout_marginLeft="35dp"[m
+[31m-        android:layout_marginRight="35dp"[m
+         android:src="@drawable/pic_cd"[m
+[31m-        android:layout_weight="1" />[m
+[32m+[m[32m        android:layout_weight="1"[m
+[32m+[m[32m        android:layout_gravity="center"[m
+[32m+[m[32m        android:layout_marginLeft="40dp"[m
+[32m+[m[32m        android:layout_marginRight="40dp" />[m
+ [m
+     <LinearLayout[m
+         android:orientation="horizontal"[m
+         android:layout_width="match_parent"[m
+         android:layout_height="match_parent"[m
+[31m-        android:layout_weight="6"[m
+[31m-        android:layout_marginBottom="15dp">[m
+[32m+[m[32m        android:layout_marginBottom="15dp"[m
+[32m+[m[32m        android:layout_weight="4">[m
+[32m+[m
+ [m
+         <ImageView[m
+             android:id="@+id/playway"[m
+[1mdiff --git a/app/src/main/res/layout/title.xml b/app/src/main/res/layout/title.xml[m
+[1mindex 3509b84..885b0d4 100644[m
+[1m--- a/app/src/main/res/layout/title.xml[m
+[1m+++ b/app/src/main/res/layout/title.xml[m
+[36m@@ -1,6 +1,20 @@[m
+ <?xml version="1.0" encoding="utf-8"?>[m
+ <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"[m
+[31m-    android:orientation="vertical" android:layout_width="match_parent"[m
+[32m+[m[32m    android:orientation="horizontal"[m
+[32m+[m[32m    android:layout_width="match_parent"[m
+     android:layout_height="match_parent">[m
+ [m
+[32m+[m[32m    <Button[m
+[32m+[m[32m        android:id="@+id/back"[m
+[32m+[m[32m        android:layout_width="wrap_content"[m
+[32m+[m[32m        android:layout_height="wrap_content"[m
+[32m+[m[32m        android:text="back"[m
+[32m+[m[32m        android:textColor="#FF4B0E0C"[m
+[32m+[m[32m        android:layout_gravity="center"[m
+[32m+[m[32m        android:layout_marginLeft="45dp"[m
+[32m+[m[32m        android:layout_marginRight="50dp"[m
+[32m+[m[32m        android:layout_marginBottom="50dp"[m
+[32m+[m[32m        android:layout_marginTop="50dp"[m
+[32m+[m[32m        android:layout_margin="0dp" />[m
+[32m+[m
+ </LinearLayout>[m
+\ No newline at end of file[m
+warning: LF will be replaced by CRLF in .idea/vcs.xml.
+The file will have its original line endings in your working directory.

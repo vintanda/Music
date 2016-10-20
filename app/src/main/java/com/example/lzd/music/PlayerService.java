@@ -45,9 +45,9 @@ public class PlayerService extends Service {
         musicCompletion();
     }
 
+    //获取歌曲信息
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     private ArrayList<MusicData> getMusicData() {
-        //ArrayList<MusicData> MediaList = null;
         //创建Cursor对象
         Cursor cursor = null;
         cursor = getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
@@ -114,6 +114,21 @@ public class PlayerService extends Service {
         });
     }
 
+    //通知栏
+    private void nitification() {
+        Media media = musicList.get(position);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(PlayerService.this);
+        builder.setSmallon(R.drawble.pic_cd);
+        builder.setContentTitle("Music");
+        Intent intent = new Intent(PlayerService.this,MainActivity.class);
+        PendingIntent pendingIntent = new PendingIntent.getActivity(PlayerService.this,
+                0,intent,pendingIntent.FLAG_UPDATE_CURREMT);
+        builder.serContentIntent(pendingIntent);
+        builder.setContentIntent(pendingIntent);
+        Notification notification = builder.build();
+        startForeground(1,notification);
+    }
+
     private void initMediaPlayer(int i) {
         try{
             mediaPlayer.reset();
@@ -125,16 +140,16 @@ public class PlayerService extends Service {
     }
 
     public void ServiceToMain(int state,int i,boolean isPlaying) {
-        Intent intent = new Intent(Constant.MUSIC_SERVICE);
-        intent.putExtra("state",state);
+        Intent intent = new Intent(Constant.MUSIC_MAIN);
+        intent.putExtra("command",state);
         intent.putExtra("position",i);
         intent.putExtra("isPlaying",isPlaying);
         sendBroadcast(intent);
     }
 
     public void ServiceToPlay(int state,int current,boolean isPlaying,int playway) {
-        Intent intent = new Intent(Constant.MUSIC_SERVICE);
-        intent.putExtra("state",state);
+        Intent intent = new Intent(Constant.MUSIC_PLAY);
+        intent.putExtra("command",state);
         intent.putExtra("position",current);
         intent.putExtra("isPlaying",isPlaying);
         intent.putExtra("playway",playway);
@@ -156,7 +171,7 @@ public class PlayerService extends Service {
                 case 4:      //暂停
                     mediaPlayer.pause();
                     isPlaying = false;
-                    i = mediaPlayer.getCurrentPosition();
+                    i = position;
                     ServiceToMain(Constant.PAUSE_ACTION,i,isPlaying);
                     ServiceToPlay(Constant.PAUSE_ACTION,i,isPlaying,playway);
                     break;
